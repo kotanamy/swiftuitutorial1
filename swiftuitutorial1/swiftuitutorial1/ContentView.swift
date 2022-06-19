@@ -31,7 +31,7 @@ struct ContentView: View {
                     .bold()
                     .background(Color.white)
                     .foregroundColor(.yellow)
-
+                
             }
         }
     }
@@ -40,21 +40,29 @@ struct ContentView: View {
 struct ContentView2Text: View {
     var body: some View {
         VStack {
-        Text("Lets do it, lorem ipsum dorem Lets do it, lorem ipsum dorem")
-            .lineLimit(1) // Принудительно сжать до 1 строки
-            .truncationMode(.middle) // сокращаем то что в середине
-            .font(.headline)
-            .background(Color.init(uiColor: UIColor.green))
+            Text("Lets do it, lorem ipsum dorem Lets do it, lorem ipsum dorem")
+                .lineLimit(1) // Принудительно сжать до 1 строки
+                .truncationMode(.middle) // сокращаем то что в середине
+                .font(.headline)
+                .background(Color.init(uiColor: UIColor.green))
             
-        Text("AAAAAAAAAAAAAAA A AAAIUDAGDIAD H DioahDioAHDOHADO IODAHiodhqp-ufhnsloag1")
+            Text("AAAAAAAAAAAAAAA A AAAIUDAGDIAD H DioahDioAHDOHADO IODAHiodhqp-ufhnsloag1")
                 .kerning(5) // между букв добавляет растояние в конце, если не нужно растояние в конце, то используйте tracking(5)
                 .multilineTextAlignment(.center)
                 .background(.yellow)
                 .foregroundColor(.blue) // цвет самих букв
                 .lineSpacing(10)
             
+            // Порядок важен - (С) Конфуций
+            Text("HAHAHAHHAH")
+                .font(.largeTitle)
+                .padding()
+                    .background(.red)
+                .padding()
+                    .background(.blue)
+            
         }
-
+        
     }
 }
 
