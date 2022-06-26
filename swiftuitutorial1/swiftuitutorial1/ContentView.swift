@@ -230,6 +230,51 @@ struct ContentView8Stepper: View {
     }
 }
 
+// Touch, press, drag
+struct ContentView9Touches: View {
+
+    var body: some View {
+        VStack{
+            Text("Tap me")
+                .contentShape(Rectangle()) // Выделяет область для нажатия
+                .onTapGesture {
+                    print("Tapped!")
+                }
+                .font(.largeTitle)
+                .background(.yellow)
+            
+            Image("chickenGirl")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .onTapGesture(count: 2) { // сколько раз надо нажать
+                    print("Doudle chicken")
+                }
+            
+            // Распознователь жестов
+            Image("image2").resizable().aspectRatio(contentMode: .fit)
+                .gesture( // нажатие
+                    LongPressGesture(minimumDuration: 2) // нажимаем минимум 2 сек
+                    .onEnded{ _ in // когда прошло 2 сек запускаем гуся в чат
+                        print("Гусь")
+                    }
+                )
+            
+            // Перемещение
+            Image("image2").resizable().aspectRatio(contentMode: .fit)
+                .gesture( // нажатие
+                    DragGesture(minimumDistance: 30) // перетягиваем на 30 пунктов
+                    .onEnded{ _ in // когда перетащили (завершили перетаскивание (отжали)) на 30 пунктов запускаем 2х гусей в чат
+                        print("2 гуся")
+                    }
+                )
+            
+            
+        }//.onTapGesture {
+         //   print("Hi")
+        //}
+    }
+}
+
 //struct ContentView6: View {
 //
 //    var body: some View {
@@ -251,7 +296,8 @@ struct ContentView_Previews: PreviewProvider {
             //ContentView5TextField()
             //ContentView6Slider()
             //ContentView7Picker()
-            ContentView8Stepper()
+            // ContentView8Stepper()
+            ContentView9Touches()
         }
     }
 }
