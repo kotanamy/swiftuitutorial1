@@ -403,8 +403,64 @@ struct ContentView11_2NavigationViewWithList: View {
 }
 
 
+// Tab View - помогает переключаться между view
+struct ContentView12TabView: View {
+    
+    @State private var selectedView = 1
+    
+    var body: some View {
+        // $selectedView для отслеживания активного окна (еще нужно добавить .tabItem.tag)
+        TabView(selection: $selectedView){ // панель внизу
+            VStack{
+                Image("chickenGirl").resizable().aspectRatio(contentMode: .fit)
+                Text("First View")
+            }
+            .tabItem {
+                Image(systemName: "1.circle")
+                Text("First")
+            }.tag(1) // для отслеживания активного окна
+            
+            
+            VStack{
+                Image("image2").resizable().aspectRatio(contentMode: .fit)
+                Text("Second View")
+            }
+            .tabItem{
+                Image(systemName: "2.circle")
+                Text("Second")
+            }.tag(2)
+        }
+    }
+}
 
+// Group нужен для группировки view
+struct ContentView13Group: View {
 
+    var body: some View {
+        VStack{ // Может содержать максимум 10 view
+            Group{
+                Text("Hello")
+                Text("Hello")
+                Text("Hello")
+                Text("Hello")
+                Text("Hello")
+                Text("Hello")
+                Text("Hello")
+                Text("Hello")
+                Text("Hello")
+                Text("Hello")
+            }
+            Group{
+                Text("Hello")
+                Text("Hello")
+                Text("Hello")
+                Text("Hello")
+                Text("Hello")
+                
+            }
+        }
+    }
+}
 
 
 //struct ContentView6: View {
@@ -432,7 +488,9 @@ struct ContentView_Previews: PreviewProvider {
             // ContentView9Touches()
             // ContentView10List()
             // ContentView11NavigationView()
-            ContentView11_2NavigationViewWithList()
+            // ContentView11_2NavigationViewWithList()
+            // ContentView12TabView()
+            ContentView13Group()
         }
     }
 }
