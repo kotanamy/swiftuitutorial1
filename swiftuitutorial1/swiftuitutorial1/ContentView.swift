@@ -148,8 +148,25 @@ struct ContentView4StateToggle: View {
         }
     }
 }
-
-
+// TextField SecureField
+struct ContentView5TextField: View {
+    
+    @State private var name = ""
+    @State private var password = ""
+    
+    var body: some View {
+        VStack{
+            TextField("PlaceholderMy", text: $name) // $ - для изменения свойста name
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            // Для пароля
+            SecureField("Enter your password", text: $password)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            Text("Hello, \(name), your password: \(password)") // здесь name только читаем
+        }
+    }
+}
 
 // Нужна для отображения в canvas xCode
 // В продакт не идет
@@ -159,7 +176,8 @@ struct ContentView_Previews: PreviewProvider {
             // ContentView()
             // ContentView2Text()
             // ContentView3Image()
-            ContentView4StateToggle()
+            // ContentView4StateToggle()
+            ContentView5TextField()
         }
     }
 }
