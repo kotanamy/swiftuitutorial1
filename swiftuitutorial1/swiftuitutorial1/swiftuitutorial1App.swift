@@ -11,7 +11,7 @@ import SwiftUI
 struct swiftuitutorial1App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView9Touches()
+            ContentView11_2NavigationViewWithList()
         }
     }
 }

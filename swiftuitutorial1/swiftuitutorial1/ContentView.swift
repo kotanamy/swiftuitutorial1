@@ -63,9 +63,9 @@ struct ContentView2Text: View {
             Text("HAHAHAHHAH")
                 .font(.largeTitle)
                 .padding()
-                    .background(.red)
+                .background(.red)
                 .padding()
-                    .background(.blue)
+                .background(.blue)
             
         }
         
@@ -77,37 +77,37 @@ struct ContentView3Image: View {
     var body: some View {
         VStack {
             VStack{
-            // Можно конвертировать как обычный текст
-            Image(systemName: "cloud.sun.fill") // cистемная картинка (SF Symbols (прога с системными изображениями))
-                .font(.largeTitle)
-                .padding(30)
+                // Можно конвертировать как обычный текст
+                Image(systemName: "cloud.sun.fill") // cистемная картинка (SF Symbols (прога с системными изображениями))
+                    .font(.largeTitle)
+                    .padding(30)
                     .background(Color.blue) // может принимать изображение в параметры
                     .foregroundColor(.white)
                     .clipShape(Circle()) // накладываем форму (круга) (Capsule\RoundedRectangle ...)
                 // .flame(width: 200, height: 200) - рамка
-            // по дефолту растянуто
-            Image("image2")
-                .resizable()                    // оставляет картинку в ее прежнем
-                .aspectRatio(contentMode: .fit) // соотношении сторон
+                // по дефолту растянуто
+                Image("image2")
+                    .resizable()                    // оставляет картинку в ее прежнем
+                    .aspectRatio(contentMode: .fit) // соотношении сторон
             }
-        
-        HStack{
-            // Градиент
-            Text("Huhaha")
-                .font(.largeTitle)
-                .padding()
-                .foregroundColor(.white)
-                .background(LinearGradient(gradient: Gradient(colors: [.black, .white]), startPoint: .leading, endPoint: .trailing)) // сверху вниз (.top .bottom)
-        
-        }
+            
+            HStack{
+                // Градиент
+                Text("Huhaha")
+                    .font(.largeTitle)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(LinearGradient(gradient: Gradient(colors: [.black, .white]), startPoint: .leading, endPoint: .trailing)) // сверху вниз (.top .bottom)
+                
+            }
             HStack {
                 // Радиальный градиент
                 let colors = Gradient(colors: [.red, .blue, .green, .white, .purple])
                 // let gradient = RadialGradient(gradient: colors, center: .center, startRadius: 30, endRadius: 200) // из центра наружу
                 let gradient = AngularGradient(gradient: colors, center: .center) // по кругу
                 Circle()
-                    // .fill(gradient)
-                    // .frame(width: 200, height: 200)
+                // .fill(gradient)
+                // .frame(width: 200, height: 200)
                     .strokeBorder(gradient, lineWidth: 30)
             }
         }
@@ -182,7 +182,7 @@ struct ContentView6Slider: View {
 }
 
 struct ContentView7Picker: View {
-
+    
     private var colors = ["black", "white", "green", "yellow"]
     
     @State private var selectedColor = 0
@@ -197,7 +197,7 @@ struct ContentView7Picker: View {
             .pickerStyle(SegmentedPickerStyle())
             //.padding()
             //.frame(width: 200, height: 200, alignment: .center)
-
+            
             
             Text("You selected: \(colors[selectedColor])")
         }
@@ -209,7 +209,7 @@ struct ContentView7Picker: View {
 struct ContentView8Stepper: View {
     
     @State private var age = 18
-
+    
     var body: some View {
         VStack{
             Stepper("Enter your age", value: $age, in: 0...130)
@@ -217,14 +217,14 @@ struct ContentView8Stepper: View {
             
             //Stepper 2
             Stepper("Enter age",
-                onIncrement: {
-                    self.age += 1
-                    print("Add")
-                },
-                onDecrement: {
-                    self.age -= 1
-                    print("minus")
-                }
+                    onIncrement: {
+                self.age += 1
+                print("Add")
+            },
+                    onDecrement: {
+                self.age -= 1
+                print("minus")
+            }
             )
         }
     }
@@ -232,7 +232,7 @@ struct ContentView8Stepper: View {
 
 // Touch, press, drag
 struct ContentView9Touches: View {
-
+    
     var body: some View {
         VStack{
             Text("Tap me")
@@ -254,23 +254,23 @@ struct ContentView9Touches: View {
             Image("image2").resizable().aspectRatio(contentMode: .fit)
                 .gesture( // нажатие
                     LongPressGesture(minimumDuration: 2) // нажимаем минимум 2 сек
-                    .onEnded{ _ in // когда прошло 2 сек запускаем гуся в чат
-                        print("Гусь")
-                    }
+                        .onEnded{ _ in // когда прошло 2 сек запускаем гуся в чат
+                            print("Гусь")
+                        }
                 )
             
             // Перемещение
             Image("image2").resizable().aspectRatio(contentMode: .fit)
                 .gesture( // нажатие
                     DragGesture(minimumDistance: 30) // перетягиваем на 30 пунктов
-                    .onEnded{ _ in // когда перетащили (завершили перетаскивание (отжали)) на 30 пунктов запускаем 2х гусей в чат
-                        print("2 гуся")
-                    }
+                        .onEnded{ _ in // когда перетащили (завершили перетаскивание (отжали)) на 30 пунктов запускаем 2х гусей в чат
+                            print("2 гуся")
+                        }
                 )
             
             
         }//.onTapGesture {
-         //   print("Hi")
+        //   print("Hi")
         //}
     }
 }
@@ -352,6 +352,60 @@ struct ContentView10List: View {
 
 
 
+// NavigationView - контейнер для других view
+// К таким контейнерам так же относятся: TabView и Group
+struct ContentView11NavigationView: View {
+    
+    var body: some View {
+        NavigationView {
+            
+            Text("Swift")
+                .navigationBarTitle("Welcome, my brother", displayMode: .inline)
+                .navigationBarItems(trailing:
+                 HStack{
+                    Button("Help"){
+                        print("Help tapped")
+                    }
+                    
+                    Button("About"){
+                        print("About tapped")
+                    }
+                    
+                }
+                )
+        }.background(.black)
+    }
+}
+
+// NavBar with List
+struct ContentView11_2NavigationViewWithList: View {
+    
+    @State private var users = ["Leha", "Petya", "Shaina"]
+    
+    var body: some View {
+        NavigationView {
+            List{
+                ForEach(users, id: \.self) { user in
+                    Text(user)
+                }.onDelete(perform: delete) // при свайпе влево сработает функция удаления (либо кнока в Edit)
+                    .onMove(perform: move) // При нажатии Edit можно переставлять элементы
+            }.navigationBarItems(trailing: EditButton()) // Создание кнопки Edit
+        }
+    }
+    
+    func delete(at offsets: IndexSet){
+        users.remove(atOffsets: offsets)
+    }
+    
+    func move(from source: IndexSet, to destination : Int){
+        users.move(fromOffsets: source, toOffset: destination)
+    }
+}
+
+
+
+
+
 
 //struct ContentView6: View {
 //
@@ -371,12 +425,14 @@ struct ContentView_Previews: PreviewProvider {
             // ContentView2Text()
             // ContentView3Image()
             // ContentView4StateToggle()
-            //ContentView5TextField()
-            //ContentView6Slider()
-            //ContentView7Picker()
+            // ContentView5TextField()
+            // ContentView6Slider()
+            // ContentView7Picker()
             // ContentView8Stepper()
-            //ContentView9Touches()
-            ContentView10List()
+            // ContentView9Touches()
+            // ContentView10List()
+            // ContentView11NavigationView()
+            ContentView11_2NavigationViewWithList()
         }
     }
 }
