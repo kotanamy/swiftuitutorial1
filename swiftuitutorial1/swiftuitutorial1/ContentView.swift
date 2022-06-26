@@ -275,6 +275,84 @@ struct ContentView9Touches: View {
     }
 }
 
+
+// List
+// Нужен для отображения
+// статических или динамических элементов
+
+// Статический элемент
+struct MusicRow : View{
+    var name : String
+    var body: some View {
+        Text("Music: \(name)")
+    }
+}
+
+// Динамический элемент
+struct Restaurant : Identifiable {
+    var id = UUID() // Обязательная строка
+    var name: String
+}
+
+struct RestaurantRow : View {
+    var restaurant : Restaurant
+    var body : some View {
+        Text("Come and eat at \(restaurant.name)")
+    }
+}
+
+// Делим список на секции
+struct TaskRow: View {
+    var body: some View{
+        Text("Покорми гуся")
+    }
+}
+
+struct ContentView10List: View {
+    var body: some View {
+        
+        let first = Restaurant(name: "first R")
+        let second = Restaurant(name: "second R")
+        let third = Restaurant(name: "third R")
+        
+        let restaurants = [first, second, third]
+        
+        VStack{
+            // Статические эл-ты
+            List {
+                MusicRow(name: "Rock")
+                MusicRow(name: "Rap")
+                MusicRow(name: "JRock")
+            }.frame(height: 200)
+            
+            //Spacer()
+            
+            // Динамические эл-ты
+            List(restaurants){ r in
+                RestaurantRow(restaurant: r)
+            }.frame(height: 200)
+            
+            //Spacer()
+            
+            List {
+                Section(header: Text("My tasks"), footer: Text("bottom")){
+                    TaskRow()
+                    TaskRow()
+                }
+                Section(header: Text("Other tasks")){
+                    TaskRow()
+                    TaskRow()
+                    TaskRow()
+                } .listRowBackground(Color.green)
+            }.listStyle(GroupedListStyle())
+            
+        }
+    }
+}
+
+
+
+
 //struct ContentView6: View {
 //
 //    var body: some View {
@@ -297,7 +375,8 @@ struct ContentView_Previews: PreviewProvider {
             //ContentView6Slider()
             //ContentView7Picker()
             // ContentView8Stepper()
-            ContentView9Touches()
+            //ContentView9Touches()
+            ContentView10List()
         }
     }
 }
