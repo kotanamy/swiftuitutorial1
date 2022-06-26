@@ -181,6 +181,29 @@ struct ContentView6Slider: View {
     }
 }
 
+struct ContentView7Picker: View {
+
+    private var colors = ["black", "white", "green", "yellow"]
+    
+    @State private var selectedColor = 0
+    
+    var body: some View {
+        VStack{
+            Picker(selection: $selectedColor, label: Text("Choose a color")){
+                ForEach(0 ..< colors.count) {
+                    Text(self.colors[$0])
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            //.padding()
+            //.frame(width: 200, height: 200, alignment: .center)
+
+            
+            Text("You selected: \(colors[selectedColor])")
+        }
+    }
+}
+
 //struct ContentView6: View {
 //
 //    var body: some View {
@@ -200,7 +223,8 @@ struct ContentView_Previews: PreviewProvider {
             // ContentView3Image()
             // ContentView4StateToggle()
             //ContentView5TextField()
-            ContentView6Slider()
+            //ContentView6Slider()
+            ContentView7Picker()
         }
     }
 }
