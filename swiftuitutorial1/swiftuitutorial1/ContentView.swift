@@ -204,6 +204,32 @@ struct ContentView7Picker: View {
     }
 }
 
+
+// Stepper
+struct ContentView8Stepper: View {
+    
+    @State private var age = 18
+
+    var body: some View {
+        VStack{
+            Stepper("Enter your age", value: $age, in: 0...130)
+            Text("Age : \(age)")
+            
+            //Stepper 2
+            Stepper("Enter age",
+                onIncrement: {
+                    self.age += 1
+                    print("Add")
+                },
+                onDecrement: {
+                    self.age -= 1
+                    print("minus")
+                }
+            )
+        }
+    }
+}
+
 //struct ContentView6: View {
 //
 //    var body: some View {
@@ -224,7 +250,8 @@ struct ContentView_Previews: PreviewProvider {
             // ContentView4StateToggle()
             //ContentView5TextField()
             //ContentView6Slider()
-            ContentView7Picker()
+            //ContentView7Picker()
+            ContentView8Stepper()
         }
     }
 }
