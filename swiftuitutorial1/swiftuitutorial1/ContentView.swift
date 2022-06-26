@@ -168,6 +168,28 @@ struct ContentView5TextField: View {
     }
 }
 
+// Slider
+struct ContentView6Slider: View {
+    
+    @State private var celsius: Double = 0
+    
+    var body: some View {
+        VStack{
+            Slider(value: $celsius, in: -100...100, step: 0.1)
+            Text("\(celsius) C is \(celsius * 9/5 + 32) - fahr")
+        }
+    }
+}
+
+//struct ContentView6: View {
+//
+//    var body: some View {
+//        VStack{
+//
+//        }
+//    }
+//}
+
 // Нужна для отображения в canvas xCode
 // В продакт не идет
 struct ContentView_Previews: PreviewProvider {
@@ -177,7 +199,8 @@ struct ContentView_Previews: PreviewProvider {
             // ContentView2Text()
             // ContentView3Image()
             // ContentView4StateToggle()
-            ContentView5TextField()
+            //ContentView5TextField()
+            ContentView6Slider()
         }
     }
 }
