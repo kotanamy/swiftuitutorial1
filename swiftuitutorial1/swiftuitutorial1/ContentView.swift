@@ -462,6 +462,39 @@ struct ContentView13Group: View {
     }
 }
 
+// Form
+struct ContentView14Form: View {
+    
+    @State private var colors = ["Red", "Green", " Blue"]
+    @State private var selectedColor = 0
+    @State private var additionalSettings = false
+    
+    var body: some View {
+        NavigationView{
+            Form {
+                // Отделяет от остального контента
+                Section(header: Text("Colors")){
+                
+                Picker(selection: $selectedColor, label: Text("Select a color")) {
+                    ForEach(0..<colors.count){
+                        Text(self.colors[$0])
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+                }
+                
+                Toggle(isOn: $additionalSettings){
+                    Text("Additional settings")
+                }
+                
+                Button(action:{}){
+                    Text("Save changes")
+                }.disabled(!additionalSettings)
+                
+            }.navigationBarTitle("Settings")
+        }
+    }
+}
+
 
 //struct ContentView6: View {
 //
@@ -490,7 +523,8 @@ struct ContentView_Previews: PreviewProvider {
             // ContentView11NavigationView()
             // ContentView11_2NavigationViewWithList()
             // ContentView12TabView()
-            ContentView13Group()
+            // ContentView13Group()
+            ContentView14Form()
         }
     }
 }
